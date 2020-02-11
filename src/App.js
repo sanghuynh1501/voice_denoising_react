@@ -1,7 +1,9 @@
 import React, {useCallback} from 'react'
-import logo from './logo.svg'
 import WavEncoder from 'wav-encoder'
+import { Progress, Button } from 'antd'
 import './App.css'
+
+import 'antd/dist/antd.css'
 
 import { useDropzone } from 'react-dropzone'
 const WaveFile = require('wavefile').WaveFile
@@ -28,10 +30,7 @@ function Dropzone() {
 
   return (
     <>
-      <div id="predict_label" style={{color: 'white', marginBottom: 10}}>
-        No label
-      </div>
-      <div {...getRootProps()}>
+      <div {...getRootProps()} style={{marginBottom: 10}}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
@@ -40,8 +39,8 @@ function Dropzone() {
           Your browser does not support the audio element.
         </audio>
       }
-      <div style={{height: 50}}>
-
+      <div style={{height: 50, width: 300, marginTop: 10}}>
+        <Progress percent={0} />
       </div>
       {
         <audio id="result_source" controls>
@@ -49,7 +48,8 @@ function Dropzone() {
         </audio>
       }
       {
-        <button 
+        <Button 
+          type="primary"
           id="predict_button"
           style={{ display: 'none', marginTop: 10 }}
           onClick={() => {
@@ -83,7 +83,7 @@ function Dropzone() {
           }}
         >
           Predict
-        </button>
+        </Button>
       }
     </>
   )
