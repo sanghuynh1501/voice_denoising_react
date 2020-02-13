@@ -1,3 +1,3 @@
 (() => {
-    this.go = new Go()
+    this.Go = Go
 })()
